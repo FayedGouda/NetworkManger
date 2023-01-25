@@ -35,7 +35,7 @@ open class BaseAPI<T:TargetType> {
     ///Base URL for your project
     ///You can have multiple base urls in the same project, in this case add a baseUrl { get } property
     ///to TargetType Protocol
-    private var baseUrl = "http://projectegy-003-site10.gtempurl.com"
+    private var baseUrl = "http://projectegy-002-site11.gtempurl.com"
     
     public init() {
         
@@ -69,19 +69,6 @@ open class BaseAPI<T:TargetType> {
             }
         }
     }
-    
-//    public func request2<M: Codable>(for target:T, parameters:JSON? = nil, completion: @escaping(Result<M, Error>) -> Void){
-//        self.requestTarget = target
-////        let method = Alamofire.HTTPMethod(rawValue: target.httpMethod.rawValue)
-////
-////        let headers = HTTPHeaders(target.headers ?? [:])
-////        let params = buildParams(for: parameters)
-//        let urlRequest = test.createRequest(route: "\(self.baseUrl)\(target.endPoint)", method: target.httpMethod, parameters: parameters)
-//
-//        AF.request(urlRequest!).responseDecodable(of: M.self) { (response) in
-//            debugPrint(response)
-//        }
-//    }
     
     private func handleStatusCodes(for statusCode:Int)->NetworkError {
         switch statusCode{
