@@ -29,6 +29,11 @@ public protocol TargetType{
 //    }
 //}
 
+public struct MyError:Error{
+    let errorCode:Int
+    let message:String
+}
+
 public typealias JSON = [String:Any]
 open class BaseAPI<T:TargetType> {
     
@@ -64,8 +69,17 @@ open class BaseAPI<T:TargetType> {
                 
                 completion(.success(responseObj))
             }else{
-                let networkError = self.handleStatusCodes(for: statusCode)
-                completion(.failure(networkError))
+                
+                guard let responseObj = response.value else {
+                    completion(.failure(NetworkError.errorDecoding))
+                    return
+                }
+                
+                completion(.success(responseObj))
+                
+                
+//                let networkError = self.handleStatusCodes(for: statusCode)
+//                completion(.failure(networkError))
             }
         }
     }
